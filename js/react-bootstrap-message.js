@@ -8,9 +8,7 @@ class Message extends React.Component {
   };
 
   render() {
-    return <div className="tips-overlay tips-middle">
-      <div className="tips in badge badge-success">{this.props.children}</div>
-    </div>
+    return <div className="tips in badge badge-success">{this.props.children}</div>
   }
 }
 
