@@ -1,9 +1,5 @@
 .tips-overlay {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
   position: fixed;
   top: 0;
@@ -14,15 +10,8 @@
 }
 
 .tips {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
   flex-direction: column;
   line-height: normal;
   margin-left: 1em;
@@ -36,7 +25,6 @@
   min-height: 44px;
   white-space: normal;
   box-shadow: 0 0 4px rgba(0, 0, 0, .1);
-  -webkit-transform-origin: center;
   transform-origin: center;
   opacity: 0;
 }
@@ -50,8 +38,6 @@
 }
 
 .tips-top {
-  -webkit-box-align: start;
-  -webkit-align-items: flex-start;
   align-items: flex-start;
   pointer-events: none;
 }
@@ -60,7 +46,6 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   pointer-events: auto;
-  -webkit-transition: .35s cubic-bezier(1, 0, 0.5, 0);
   transition: .35s cubic-bezier(1, 0, 0.5, 0);
   margin-top: -44px;
 }
@@ -74,50 +59,83 @@
 }
 
 .tips-middle {
-  -webkit-box-align: center;
-  -webkit-align-items: center;
   align-items: center;
 }
 
 .tips-middle .in {
-  -webkit-animation: tips-pop-in .35s;
   animation: tips-pop-in .35s;
 }
 
 .tips-middle .out {
-  -webkit-animation: tips-pop-out .1s;
   animation: tips-pop-out .1s;
 }
 
-@keyframes tips-pop-in {
-  0% {
-    opacity: 0;
-    transform: scale(.8);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+@mixin fade-effect($time) {
+  animation-duration: $time;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
 }
 
-@-webkit-keyframes tips-pop-in {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale(.8);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-  }
-}
+.rc-notification {
+  //position: fixed;
+  //z-index: 1000;
 
-@keyframes tips-pop-out {
-  0% {
-    opacity: 1;
-    transform: scale(1);
+  &-notice {
+    //padding: 7px 20px 7px 10px;
+    //border-radius: 3px 3px;
+    //box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    //border: 0 solid rgba(0, 0, 0, 0);
+    //background: #fff;
+    //display: block;
+    //width: auto;
+    //line-height: 1.5;
+    //vertical-align: middle;
+    //position: relative;
+    //margin: 10px 0;
   }
-  100% {
+
+  &-fade-enter {
     opacity: 0;
-    transform: scale(.8);
+    @include fade-effect(.35s);
+    animation-play-state: paused;
+  }
+
+  &-fade-leave {
+    @include fade-effect(.1s);
+    animation-play-state: paused;
+  }
+
+  &-fade-enter,
+  &-fade-enter-active {
+    animation-name: tips-pop-in;
+    animation-play-state: running;
+  }
+
+  &-fade-leave,
+  &-fade-leave-active {
+    animation-name: tips-pop-out;
+    animation-play-state: running;
+  }
+
+  @keyframes tips-pop-in {
+    0% {
+      opacity: 0;
+      transform: scale(.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes tips-pop-out {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(.8);
+    }
   }
 }

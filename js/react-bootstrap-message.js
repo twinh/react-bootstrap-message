@@ -16,16 +16,17 @@ class Message extends React.Component {
 
 let notification = null;
 Notification.newInstance({
-  prefixCls: 'message',
+  // prefixCls: 'message',
   style: {}, // 移除默认的样式
 }, (n) => notification = n);
 
 Message.message = (content) => {
   const key = Date.now();
   notification.notice({
+    // content: content,
     content: <Message>{content}</Message>,
     duration: 1000000,
-    prefixCls: 'message',
+    // prefixCls: 'message',
     style: {}, // 移除默认的样式
     key,
     onClick: () => {
