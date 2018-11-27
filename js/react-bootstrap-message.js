@@ -31,7 +31,7 @@ Message.message = (content, duration = 2, type, onClose) => {
   });
 };
 
-['success', 'danger', 'warning', 'info'].forEach((type) => {
+['success', 'danger', 'warning', 'info', 'dark'].forEach((type) => {
   Message[type] = (content, duration, onClose) => Message.message(content, duration, type, onClose);
 });
 
