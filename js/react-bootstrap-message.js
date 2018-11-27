@@ -2,15 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Notification from 'rc-notification';
 
-class Message extends React.Component {
-  static defaultProps = {
-    type: 'success',
-  };
+const Message = (props) => {
+  return <div className={"message-content message-content-" + props.type}>{props.children}</div>;
+};
 
-  render() {
-    return <div className="tips in badge badge-success">{this.props.children}</div>
-  }
-}
+Message.defaultProps = {
+  type: 'success',
+};
 
 let notification = null;
 Notification.newInstance({
@@ -19,12 +17,11 @@ Notification.newInstance({
   style: {}, // 移除默认的样式
 }, (n) => notification = n);
 
-Message.message = (content) => {
+Message.message = (content, duration = 2, type, onClose) => {
   const key = Date.now();
   notification.notice({
-    // content: content,
-    content: <Message>{content}</Message>,
-    duration: 1000000,
+    content: <Message type={type}>{content}</Message>,
+    duration: duration,
     prefixCls: 'message',
     style: {}, // 移除默认的样式
     key,
@@ -34,8 +31,8 @@ Message.message = (content) => {
   });
 };
 
-Message.success = (content) => {
-  Message.message(content);
-};
+['success', 'danger', 'warning', 'info'].forEach((type) => {
+  Message[type] = (content, duration, onClose) => Message.message(content, duration, type, onClose);
+});
 
 export default Message;
