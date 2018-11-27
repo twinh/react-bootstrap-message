@@ -14,7 +14,8 @@ class Message extends React.Component {
 
 let notification = null;
 Notification.newInstance({
-  // prefixCls: 'message',
+  prefixCls: 'message',
+  animation: 'pop',
   style: {}, // 移除默认的样式
 }, (n) => notification = n);
 
@@ -24,7 +25,7 @@ Message.message = (content) => {
     // content: content,
     content: <Message>{content}</Message>,
     duration: 1000000,
-    // prefixCls: 'message',
+    prefixCls: 'message',
     style: {}, // 移除默认的样式
     key,
     onClick: () => {

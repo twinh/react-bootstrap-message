@@ -51,13 +51,13 @@
   align-items: center;
 }
 
-@mixin fade-effect($time) {
+@mixin pop-effect($time) {
   animation-duration: $time;
   animation-fill-mode: both;
   animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
 }
 
-.rc-notification {
+.message {
   &-notice {
     display: flex;
     justify-content: center;
@@ -74,23 +74,23 @@
 
   }
 
-  &-fade-enter {
+  &-pop-enter {
     opacity: 0;
-    @include fade-effect(.35s);
+    @include pop-effect(.35s);
     animation-play-state: paused;
   }
 
-  &-fade-leave {
-    @include fade-effect(.1s);
+  &-pop-leave {
+    @include pop-effect(.1s);
     animation-play-state: paused;
   }
 
-  &-fade-enter#{&}-fade-enter-active {
+  &-pop-enter#{&}-pop-enter-active {
     animation-name: tips-pop-in;
     animation-play-state: running;
   }
 
-  &-fade-leave#{&}-fade-leave-active {
+  &-pop-leave#{&}-pop-leave-active {
     animation-name: tips-pop-out;
     animation-play-state: running;
   }
