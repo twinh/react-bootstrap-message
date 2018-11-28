@@ -7,7 +7,6 @@ import ReactDOM from 'react-dom';
 import Notification from 'rc-notification';
 
 let defaultDuration = 2; /* global Promise */
-let defaultTop = 0;
 let messageInstance = 0;
 let key = 1;
 let prefixCls = 'message';
@@ -23,7 +22,7 @@ function getMessageInstance(callback) {
   Notification.newInstance({
     prefixCls: prefixCls,
     transitionName: transitionName,
-    style: {top: defaultTop},
+    style: {}, // 移除默认的样式
     getContainer: getContainer,
     maxCount: maxCount
   }, function (instance) {
@@ -77,6 +76,29 @@ function notice(args) {
 
 const api = {
   open: notice,
+  config: function config(options) {
+    if (options.top !== undefined) {
+      defaultTop = options.top;
+      messageInstance = null; // delete messageInstance for new defaultTop
+    }
+    if (options.duration !== undefined) {
+      defaultDuration = options.duration;
+    }
+    if (options.prefixCls !== undefined) {
+      prefixCls = options.prefixCls;
+    }
+    if (options.getContainer !== undefined) {
+      getContainer = options.getContainer;
+    }
+    if (options.transitionName !== undefined) {
+      transitionName = options.transitionName;
+      messageInstance = null; // delete messageInstance for new transitionName
+    }
+    if (options.maxCount !== undefined) {
+      maxCount = options.maxCount;
+      messageInstance = null;
+    }
+  },
   destroy: function destroy() {
     if (messageInstance) {
       messageInstance.destroy();
@@ -98,8 +120,12 @@ const api = {
 api.loading = (content = <>
   <i className="message-loading-icon"/>
   <div>加载中...</div>
-</>) => {
-  api.open({content: content, duration: 0, type: 'loading'});
+</>, duration = 0) => {
+  const defaultTransitionName = transitionName;
+  api.config({transitionName: null});
+  const result = api.open({content: content, duration: duration, type: 'loading'});
+  api.config({transitionName: defaultTransitionName});
+  return result;
 };
 
 export default api;
