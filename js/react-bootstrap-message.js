@@ -83,7 +83,7 @@ const api = {
   }
 };
 
-['success', 'danger', 'warning', 'info', 'dark'].forEach((type) => {
+['success', 'danger', 'warning', 'info'].forEach((type) => {
   api[type] = function (content, duration, onClose) {
     if (typeof duration === 'function') {
       onClose = duration;
@@ -92,5 +92,12 @@ const api = {
     return api.open({content: content, duration: duration, type: type, onClose: onClose});
   };
 });
+
+api.loading = (content = <>
+  <i className="message-loading-icon"/>
+  <div>加载中...</div>
+</>) => {
+  api.open({content: content, duration: 0, type: 'loading'});
+};
 
 export default api;
