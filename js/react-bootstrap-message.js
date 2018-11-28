@@ -55,8 +55,10 @@ function notice(args) {
         content: <div className={"message-content message-content-" + args.type}>{args.content}</div>,
         onClose: callback,
         onClick: () => {
-          instance.removeNotice(target);
-          callback();
+          if (args.type !== 'loading') {
+            instance.removeNotice(target);
+            callback();
+          }
         }
       });
     });
