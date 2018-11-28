@@ -1,10 +1,12 @@
 // From https://github.com/ant-design/ant-design/blob/master/components/message/index.tsx
 // 1. Removes icon dependence
+// 2. Adds onClick to remove notice
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Notification from 'rc-notification';
 
+let defaultDuration = 2; /* global Promise */
 let defaultTop = 0;
 let messageInstance = 0;
 let key = 1;
@@ -52,6 +54,10 @@ function notice(args) {
         style: {}, // 移除默认的样式
         content: <div className={"message-content message-content-" + args.type}>{args.content}</div>,
         onClose: callback,
+        onClick: () => {
+          instance.removeNotice(target);
+          callback();
+        }
       });
     });
   });
