@@ -121,11 +121,7 @@ api.loading = (content = <>
   <i className="message-loading-icon"/>
   <div>加载中...</div>
 </>, duration = 0) => {
-  const defaultTransitionName = transitionName;
-  api.config({transitionName: null});
-  const result = api.open({content: content, duration: duration, type: 'loading'});
-  api.config({transitionName: defaultTransitionName});
-  return result;
+  return api.open({content: content, duration: duration, type: 'loading'});
 };
 
 export default api;

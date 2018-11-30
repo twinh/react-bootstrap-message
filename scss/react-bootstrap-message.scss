@@ -67,7 +67,7 @@
 
   &-pop-enter {
     opacity: 0;
-    @include pop-effect(.35s);
+    @include pop-effect(.15s);
     animation-play-state: paused;
   }
 
