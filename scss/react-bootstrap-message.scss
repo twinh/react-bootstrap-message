@@ -1,28 +1,7 @@
-.tips-top {
-  align-items: flex-start;
-  pointer-events: none;
-}
-
-.tips-top .tips {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  pointer-events: auto;
-  transition: .35s cubic-bezier(1, 0, 0.5, 0);
-  margin-top: -44px;
-}
-
-.tips-top .in {
-  margin-top: 0;
-}
-
-.tips-top .out {
-  margin-top: -44px;
-}
-
 @mixin pop-effect($time) {
   animation-duration: $time;
   animation-fill-mode: both;
-  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+  animation-timing-function: cubic-bezier(1, 0, 0.5, 0);
 }
 
 .message {
@@ -67,26 +46,19 @@
 
   &-pop-enter {
     opacity: 0;
-    @include pop-effect(.15s);
-    animation-play-state: paused;
-  }
-
-  &-pop-leave {
-    @include pop-effect(.1s);
-    animation-play-state: paused;
   }
 
   &-pop-enter#{&}-pop-enter-active {
-    animation-name: tips-pop-in;
-    animation-play-state: running;
+    @include pop-effect(.15s);
+    animation-name: message-in;
   }
 
   &-pop-leave#{&}-pop-leave-active {
-    animation-name: tips-pop-out;
-    animation-play-state: running;
+    @include pop-effect(.1s);
+    animation-name: message-out;
   }
 
-  @keyframes tips-pop-in {
+  @keyframes message-in {
     0% {
       opacity: 0;
       transform: scale(.8);
@@ -97,7 +69,7 @@
     }
   }
 
-  @keyframes tips-pop-out {
+  @keyframes message-out {
     0% {
       opacity: 1;
       transform: scale(1);
@@ -133,6 +105,42 @@
     }
     100% {
       transform: rotate3d(0, 0, 1, 360deg)
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    &-notice {
+      align-items: flex-start;
+      pointer-events: none;
+    }
+
+    &-content {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      pointer-events: all;
+    }
+
+    &-pop-enter#{&}-pop-enter-active {
+      opacity: 1;
+      @include pop-effect(.35s);
+    }
+
+    @keyframes message-in {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(0%);
+      }
+    }
+
+    @keyframes message-out {
+      0% {
+        transform: translateY(0%);
+      }
+      100% {
+        transform: translateY(-100%);
+      }
     }
   }
 }
