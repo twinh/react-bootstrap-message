@@ -1,3 +1,5 @@
+$mobile-only: false !default;
+
 @mixin pop-effect($time) {
   animation-duration: $time;
   animation-fill-mode: both;
@@ -108,38 +110,40 @@
     }
   }
 
-  @media screen and (min-width: 768px) {
-    &-notice {
-      align-items: flex-start;
-      pointer-events: none;
-    }
-
-    &-content {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      pointer-events: all;
-    }
-
-    &-pop-enter#{&}-pop-enter-active {
-      opacity: 1;
-      @include pop-effect(.35s);
-    }
-
-    @keyframes message-in {
-      0% {
-        transform: translateY(-100%);
+  @if $mobile-only == false {
+    @media screen and (min-width: 768px) {
+      &-notice {
+        align-items: flex-start;
+        pointer-events: none;
       }
-      100% {
-        transform: translateY(0%);
-      }
-    }
 
-    @keyframes message-out {
-      0% {
-        transform: translateY(0%);
+      &-content {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        pointer-events: all;
       }
-      100% {
-        transform: translateY(-100%);
+
+      &-pop-enter#{&}-pop-enter-active {
+        opacity: 1;
+        @include pop-effect(.35s);
+      }
+
+      @keyframes message-in {
+        0% {
+          transform: translateY(-100%);
+        }
+        100% {
+          transform: translateY(0%);
+        }
+      }
+
+      @keyframes message-out {
+        0% {
+          transform: translateY(0%);
+        }
+        100% {
+          transform: translateY(-100%);
+        }
       }
     }
   }
