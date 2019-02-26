@@ -117,11 +117,36 @@ const api = {
   };
 });
 
-api.loading = (content = <>
-  <i className="message-loading-icon"/>
-  <div>加载中...</div>
-</>, duration = 0) => {
-  return api.open({content: content, duration: duration, type: 'loading'});
+const loadingOptions = {
+  tpl: (content) => <>
+    <i className="message-loading-icon"/>
+    <div>{content}</div>
+  </>,
+  text: '加载中...',
+  duration: 0,
+  type: 'loading',
+};
+
+let loadingResult;
+
+api.loading = (options = 'show') => {
+  switch (options) {
+    case 'show':
+      options = {content: loadingOptions.tpl(loadingOptions.text)};
+      break;
+
+    case 'hide':
+      return loadingResult();
+
+    default:
+      if (typeof options === 'string' || React.isValidElement(options)) {
+        options = {content: loadingOptions.tpl(options)};
+      }
+  }
+
+  options = {...loadingOptions, ...options};
+  loadingResult = api.open(options);
+  return loadingResult;
 };
 
 export default api;
