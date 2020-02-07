@@ -1,0 +1,165 @@
+$mobile-only: false !default;
+
+@mixin pop-effect($time) {
+  animation-duration: $time;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(1, 0, 0.5, 0);
+}
+
+.message {
+  &-notice {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+  }
+
+  &-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    line-height: normal;
+    margin-left: 1em;
+    margin-right: 1em;
+    padding: 1em;
+    font-size: 14px;
+    font-weight: normal;
+    border-radius: 6px;
+    min-width: 200px;
+    height: auto;
+    min-height: 44px;
+    white-space: normal;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .1);
+    transform-origin: center;
+    align-items: center;
+  }
+
+  @each $color, $value in $theme-colors {
+    &-content-#{$color} {
+      color: #fff;
+      background-color: $value;
+    }
+  }
+
+  &-pop-enter {
+    opacity: 0;
+  }
+
+  &-pop-enter#{&}-pop-enter-active {
+    @include pop-effect(.15s);
+    animation-name: message-in;
+  }
+
+  &-pop-leave#{&}-pop-leave-active {
+    @include pop-effect(.1s);
+    animation-name: message-out;
+  }
+
+  @keyframes message-in {
+    0% {
+      opacity: 0;
+      transform: scale(.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes message-out {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(.8);
+    }
+  }
+
+  &-content-loading {
+    width: 130px;
+    height: 110px;
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff;
+    padding: .5rem;
+    text-align: center;
+    min-width: auto;
+  }
+
+  &-loading-icon {
+    width: 37px;
+    height: 37px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEoAAABKBAMAAADu/t9CAAAALVBMVEUAAAD///////////////////////////////////////////////////////+hSKubAAAAD3RSTlMACnlJpf0VMNUgYD+O7L6ZrQXNAAACgUlEQVRIx+3UQWsTQRQH8LdVNqTxMItg0XhxUittQawLVatedIpY66X0gZdIVYgoHlorlHrwUgoBQUIOSuKllGDVg8Qo9OKlGlsVexF7jNeqn8I3m2ymM+y4oNBT/4eWkF/mvX07M7CTbcnBxgrE5zCOxSN3GMcn/gb2fiko5VhQcj27opTHolUn4lxbOZ4XrToQxwuxatc8ZhdC5dmUu474SykG0XmAOMaayrGrzg28Wg2UvSCNYhizqw4pZinoDk3R35OID+Ubahc0FtzT+E1zv4P4DYr53nAO+3L6uzqL2fMMUvNyrjPQVIRy1zT1EfHKGoPnjVUIIgs6OYqxXRB/9ELaVyUImWvd2yD2/RiAjnJMH8IryTZBxZXI3GiJo6TmdEX1zKQ/0bB0pZDKjcvZz1pfhCJSzmi9OvBvcTwKiztdi5ySMZ77yYwMUxvrZ57yaEH/6RtfZlLtiHyQi/po/CBVCLO7qTY11WWqjqY6pL80s2KyW9SFOFeI6H52y5PvLz2+VVKz/v/ZJoPV1foTkejM+wGt+eUI5taEWNPHtcxM5Nynp7xgDHXWZGVC5lrEjMtSotGtfbnTkk1p6q2gLIFbatWgc9ElZ39KUxVC/QyKX5vLJRaXAG4SO62fRyEyBXArsjWPzgDvKxDz/RP6nSrkLZ6qixFI0PVT5JwWdZ76r/WRDsnP14W4BHf5EbjN+QsA1abZXQ/UeB9L0f62HYNEXYxW4TipJB2ESYs6IMQIc6SisvyZRb2T0w8q0kPyfst56xZioKWoJM0iKim5qVuK6vKqTX2gf0FfULYppyJ62iptqwhp+iJU7vQgWMIgVLGp8QzEJ/1yEHayHfkD3v3C7oGTmFkAAAAASUVORK5CYII=);
+    background-size: 100%;
+    animation: message-rotate 1s steps(12) infinite;
+    margin-bottom: 8px;
+  }
+
+  @keyframes message-rotate {
+    0% {
+      transform: rotate3d(0, 0, 1, 0deg)
+    }
+    100% {
+      transform: rotate3d(0, 0, 1, 360deg)
+    }
+  }
+
+  @if $mobile-only == false {
+    @media screen and (min-width: 768px) {
+      &-notice {
+        align-items: flex-start;
+        pointer-events: none;
+      }
+
+      &-content {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        pointer-events: all;
+        min-height: 48px;
+      }
+
+      &-content-loading {
+        min-width: 200px;
+        flex-direction: row;
+        background: rgba(0, 0, 0, 0.8);
+        height: auto;
+      }
+
+      &-loading-icon {
+        width: 34px; // 和其他 message 一样高度
+        height: 34px;
+        margin-bottom: 0;
+        margin-right: 8px;
+      }
+
+      &-pop-enter#{&}-pop-enter-active {
+        opacity: 1;
+        @include pop-effect(.35s);
+      }
+
+      @keyframes message-in {
+        0% {
+          transform: translateY(-100%);
+        }
+        100% {
+          transform: translateY(0%);
+        }
+      }
+
+      @keyframes message-out {
+        0% {
+          transform: translateY(0%);
+        }
+        100% {
+          transform: translateY(-100%);
+        }
+      }
+    }
+  }
+}
