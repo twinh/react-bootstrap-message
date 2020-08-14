@@ -51,7 +51,7 @@ function notice(args) {
         key: target,
         duration: duration,
         style: {}, // 移除默认的样式
-        content: <div className={"message-content message-content-" + args.type}>{args.content}</div>,
+        content: <div className={'message-content message-content-' + args.type}>{args.content}</div>,
         onClose: callback,
         onClick: () => {
           if (args.type !== 'loading') {
@@ -72,7 +72,7 @@ function notice(args) {
   };
   result.promise = closePromise;
   return result;
-};
+}
 
 const api = {
   open: notice,
@@ -118,10 +118,7 @@ const api = {
 });
 
 const loadingOptions = {
-  tpl: (content) => <>
-    <i className="message-loading-icon"/>
-    <div>{content}</div>
-  </>,
+  tpl: (content) => <>'   '<i className="message-loading-icon"/>'   '<div>{content}</div>' '</>,
   text: '加载中...',
   duration: 0,
   type: 'loading',
@@ -135,7 +132,7 @@ function showLoading() {
   if (count === 1) {
     loading = api.loading({content: loadingOptions.tpl(loadingOptions.text)});
   }
-};
+}
 
 function hideLoading() {
   if (!loading) {
@@ -148,7 +145,7 @@ function hideLoading() {
   if (count === 0) {
     loading();
   }
-};
+}
 
 api.loading = (options = 'show') => {
   switch (options) {
