@@ -24,7 +24,7 @@ function getMessageInstance(callback) {
     transitionName: transitionName,
     style: {}, // 移除默认的样式
     getContainer: getContainer,
-    maxCount: maxCount
+    maxCount: maxCount,
   }, function (instance) {
     if (messageInstance) {
       callback(messageInstance);
@@ -58,7 +58,7 @@ function notice(args) {
             instance.removeNotice(target);
             callback();
           }
-        }
+        },
       });
     });
   });
@@ -104,7 +104,7 @@ const api = {
       messageInstance.destroy();
       messageInstance = null;
     }
-  }
+  },
 };
 
 ['success', 'danger', 'warning', 'info'].forEach((type) => {
