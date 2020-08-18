@@ -118,7 +118,10 @@ const api = {
 });
 
 const loadingOptions = {
-  tpl: (content) => <>'   '<i className="message-loading-icon"/>'   '<div>{content}</div>' '</>,
+  tpl: (content) => <>
+    <i className="message-loading-icon"/>
+    <div>{content}</div>
+  </>,
   text: '加载中...',
   duration: 0,
   type: 'loading',
