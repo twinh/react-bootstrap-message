@@ -167,7 +167,7 @@ api.loading = (options = 'show') => {
 };
 
 api.ret = (ret, duration, callback) => {
-  const result = api[ret.code === 1 ? 'success' : 'danger'](ret.message, duration, callback);
+  const result = api[ret.code === 0 ? 'success' : 'danger'](ret.message, duration, callback);
 
   let suc;
   result.suc = fn => {
@@ -182,10 +182,10 @@ api.ret = (ret, duration, callback) => {
   };
 
   result.then(() => {
-    if (ret.code === 1 && suc) {
+    if (ret.code === 0 && suc) {
       suc();
     }
-    if (ret.code !== 1 && err) {
+    if (ret.code !== 0 && err) {
       err();
     }
   });
