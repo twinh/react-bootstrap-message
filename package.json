@@ -2,5 +2,9 @@
   "name": "react-bootstrap-message",
   "version": "0.1.1",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "rc-notification": "^3.3.1"
+  }
 }
