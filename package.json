@@ -6,5 +6,15 @@
   "dependencies": {
     "bootstrap": "^4.4.1",
     "rc-notification": "^3.3.1"
+  },
+  "devDependencies": {
+    "@miaoxing/dev": "^6.4.0"
+  },
+  "jest": {
+    "preset": "jest-preset-miaoxing"
+  },
+  "ciDependencies": {
+    "babel-preset-miaoxing": "miaoxing/babel-preset-miaoxing",
+    "@miaoxing/dev": "miaoxing/dev"
   }
 }
