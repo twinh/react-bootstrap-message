@@ -3,10 +3,9 @@
 // 2. Adds onClick to remove notice
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Notification from 'rc-notification';
 
-let defaultDuration = 3; /* global Promise */
+let defaultDuration = 3;
 let messageInstance = 0;
 let key = 1;
 let prefixCls = 'message';
@@ -78,8 +77,7 @@ const api = {
   open: notice,
   config: function config(options) {
     if (options.top !== undefined) {
-      defaultTop = options.top;
-      messageInstance = null; // delete messageInstance for new defaultTop
+      messageInstance = null;
     }
     if (options.duration !== undefined) {
       defaultDuration = options.duration;
