@@ -38,7 +38,7 @@ $mobile-only: false !default;
     height: auto;
     min-height: 44px;
     white-space: normal;
-    box-shadow: 0 0 4px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
     transform-origin: center;
     align-items: center;
   }
@@ -55,20 +55,23 @@ $mobile-only: false !default;
   }
 
   &-pop-enter#{&}-pop-enter-active {
-    @include pop-effect(.15s);
+    @include pop-effect(0.15s);
+
     animation-name: message-in;
   }
 
   &-pop-leave#{&}-pop-leave-active {
-    @include pop-effect(.1s);
+    @include pop-effect(0.1s);
+
     animation-name: message-out;
   }
 
   @keyframes message-in {
     0% {
       opacity: 0;
-      transform: scale(.8);
+      transform: scale(0.8);
     }
+
     100% {
       opacity: 1;
       transform: scale(1);
@@ -80,9 +83,10 @@ $mobile-only: false !default;
       opacity: 1;
       transform: scale(1);
     }
+
     100% {
       opacity: 0;
-      transform: scale(.8);
+      transform: scale(0.8);
     }
   }
 
@@ -91,7 +95,7 @@ $mobile-only: false !default;
     height: 110px;
     background: rgba(0, 0, 0, 0.65);
     color: #fff;
-    padding: .5rem;
+    padding: 0.5rem;
     text-align: center;
     min-width: auto;
   }
@@ -107,10 +111,11 @@ $mobile-only: false !default;
 
   @keyframes message-rotate {
     0% {
-      transform: rotate3d(0, 0, 1, 0deg)
+      transform: rotate3d(0, 0, 1, 0deg);
     }
+
     100% {
-      transform: rotate3d(0, 0, 1, 360deg)
+      transform: rotate3d(0, 0, 1, 360deg);
     }
   }
 
@@ -144,13 +149,15 @@ $mobile-only: false !default;
 
       &-pop-enter#{&}-pop-enter-active {
         opacity: 1;
-        @include pop-effect(.35s);
+
+        @include pop-effect(0.35s);
       }
 
       @keyframes message-in {
         0% {
           transform: translateY(-100%);
         }
+
         100% {
           transform: translateY(0%);
         }
@@ -160,6 +167,7 @@ $mobile-only: false !default;
         0% {
           transform: translateY(0%);
         }
+
         100% {
           transform: translateY(-100%);
         }
