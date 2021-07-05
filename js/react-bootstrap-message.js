@@ -2,7 +2,7 @@
 // 1. Removes icon dependence
 // 2. Adds onClick to remove notice
 
-import React from 'react';
+import { isValidElement } from 'react';
 import Notification from 'rc-notification';
 
 let defaultDuration = 3;
@@ -157,7 +157,7 @@ api.loading = (options = 'show') => {
       return hideLoading();
 
     default:
-      if (typeof options === 'string' || React.isValidElement(options)) {
+      if (typeof options === 'string' || isValidElement(options)) {
         options = {content: loadingOptions.tpl(options)};
       }
       return api.open({...loadingOptions, ...options});
