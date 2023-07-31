@@ -1,3 +1,13 @@
+## [0.2.8](https://github.com/twinh/react-bootstrap-message/compare/v0.2.7...v0.2.8) (2023-07-31)
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/dev:** upgrade from `8.2.1` to `8.2.2`
+
 ## [0.2.7](https://github.com/twinh/react-bootstrap-message/compare/v0.2.6...v0.2.7) (2023-05-31)
 
 
