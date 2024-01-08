@@ -1,3 +1,13 @@
+## [0.2.12](https://github.com/twinh/react-bootstrap-message/compare/v0.2.11...v0.2.12) (2024-01-08)
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/dev:** upgrade from `9.0.0` to `9.1.0`
+
 ## [0.2.11](https://github.com/twinh/react-bootstrap-message/compare/v0.2.10...v0.2.11) (2023-12-31)
 
 
