@@ -1,3 +1,10 @@
+## [0.2.13](https://github.com/twinh/react-bootstrap-message/compare/v0.2.12...v0.2.13) (2024-01-31)
+
+
+### Features
+
+* 更新 `react` 支持 18 ([f6358ca](https://github.com/twinh/react-bootstrap-message/commit/f6358cabe7f825482eda01324fe7af6d6c70c4b2))
+
 ## [0.2.12](https://github.com/twinh/react-bootstrap-message/compare/v0.2.11...v0.2.12) (2024-01-08)
 
 
